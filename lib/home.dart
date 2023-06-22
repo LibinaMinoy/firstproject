@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 3),
                     Text(
-                      "Phone no: 9496035580",
+                      "Phone no: 9496035500",
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Color.fromARGB(255, 255, 255, 255),
