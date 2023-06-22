@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 
 class SelectArea extends StatefulWidget {
   const SelectArea({super.key});
@@ -38,121 +39,93 @@ class _SelectAreaState extends State<SelectArea> {
             //     )
             //   ),
             // ),
-
+            Container(
+              child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        FormHelper.dropDownWidgetWithLabel(
+                          context,
+                          "Route",
+                          "Select Your Route",
+                          this.routeId,
+                          this.routes,
+                          (onChangedVal) {
+                            this.routeId = onChangedVal;
+                            print("Selected Country : $onChangedVal");
+                            this.stops = this
+                                .stopMaster
+                                .where((stateItem) =>
+                                    stateItem["ParentId"].toString() ==
+                                    onChangedVal.toString())
+                                .toList();
+                            this.stopId = null;
+                            setState(() {});
+                          },
+                          (onValidateVal) {
+                            if (onValidateVal == null) {
+                              return "Please Select a route";
+                            }
+                            return null;
+                          },
+                          borderColor: Colors.blue,
+                          borderFocusColor: Colors.redAccent,
+                          borderRadius: 10,
+                          optionValue: "id",
+                          optionLabel: "label",
+                          textColor: Colors.black,
+                          hintColor: Colors.black,
+                        ),
+                        FormHelper.dropDownWidgetWithLabel(
+                            context,
+                            "Stop",
+                            "Select Your Stop",
+                            this.stopId,
+                            this.stops, (onChangedVal) {
+                          this.stopId = onChangedVal;
+                          print("Selected Stop : $onChangedVal");
+                        }, (onValidate) {
+                          return null;
+                        },
+                            borderColor: Colors.blueAccent,
+                            borderFocusColor: Colors.redAccent,
+                            borderRadius: 10,
+                            optionValue: "ID",
+                            optionLabel: "Name",
+                            textColor: Colors.black,
+                            hintColor: Colors.black),
+                        FormHelper.dropDownWidgetWithLabel(
+                          context,
+                          "Ticket Type",
+                          "Select Ticket ",
+                          this.typeId,
+                          this.ticketType,
+                          (onChangedVal) {
+                            this.typeId = onChangedVal;
+                            print("Selected Ticket : $onChangedVal");
+                            setState(() {});
+                          },
+                          (onValidateVal) {
+                            if (onValidateVal == null) {
+                              return "Please Select a Ticket";
+                            }
+                            return null;
+                          },
+                          borderColor: Colors.blue,
+                          borderFocusColor: Colors.redAccent,
+                          borderRadius: 10,
+                          optionValue: "Id",
+                          optionLabel: "Ticket",
+                          textColor: Colors.black,
+                          hintColor: Colors.black,
+                        ),
+                      ],
+                    ),
+            )
             
             SizedBox(
               height: 10,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: DropdownButtonFormField<String>(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Department',
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-                items: [
-                  DropdownMenuItem<String>(
-                    value: 'IT',
-                    child: Text('IT'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'CS',
-                    child: Text('CS'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'EC',
-                    child: Text('EC'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'EEE',
-                    child: Text('EEE'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'MECH',
-                    child: Text('MECH'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'CIVIL',
-                    child: Text('CIVIL'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'SF',
-                    child: Text('SF'),
-                  ),
-                ],
-                onChanged: (value) {
-
-                },
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.8,
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: DropdownButtonFormField<String>(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-                decoration: InputDecoration(
-                  hintText: 'Semester',
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-                items: [
-                  DropdownMenuItem<String>(
-                    value: 'Semester 1',
-                    child: Text('Semester 1'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 2',
-                    child: Text('Semester 2'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 3',
-                    child: Text('Semester 3'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 4',
-                    child: Text('Semester 4'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 5',
-                    child: Text('Semester 5'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 6',
-                    child: Text('Semester 6'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 7',
-                    child: Text('Semester 7'),
-                  ),
-                  DropdownMenuItem<String>(
-                    value: 'Semester 8',
-                    child: Text('Semester 8'),
-                  ),
-                ],
-                onChanged: (value) {
-                },
-              ),
-            ),
-          
-            SizedBox(
-              height: 30,
-            ),
+            
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(

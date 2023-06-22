@@ -42,9 +42,7 @@ class _SignInState extends State<SignIn> {
                     height: 30,
                   ),
                   
-                  SizedBox(
-                      height: 20
-                  ),
+                 
                   Container(
              
               
@@ -127,6 +125,8 @@ class _SignInState extends State<SignIn> {
         )
       ],
     );
+    
+
   }
 
 

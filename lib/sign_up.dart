@@ -15,6 +15,8 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _CUSATIdTextController = TextEditingController();
   TextEditingController _userNameTextController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _phoneTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,8 @@ class _SignUpState extends State<SignUp> {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
+      child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
@@ -125,6 +128,93 @@ class _SignUpState extends State<SignUp> {
       ),
                 ),
               ),),
+               SizedBox(
+                        height: 20
+                    ),
+              Container(
+             
+              
+              child: TextFormField(
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.9)
+                ),
+                cursorColor: Colors.white,
+                controller: _phoneTextController,
+                decoration: InputDecoration(
+                   prefixIcon: Icon(Icons.person_2_outlined,
+                                       color: Colors.white70,
+                                    ),
+                    labelText: 'Phone No',
+                    labelStyle: TextStyle(
+                     color: Colors.white.withOpacity(0.9)
+                    ),filled: true,
+                 floatingLabelBehavior: FloatingLabelBehavior.never,
+                  fillColor: Colors.white.withOpacity(0.3),
+                  border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
+      ),
+                ),
+              ),),
+               SizedBox(
+                        height: 20
+                    ),
+              Container(
+             
+              
+              child: TextFormField(
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.9)
+                ),
+                cursorColor: Colors.white,
+                controller: _passwordTextController,
+                decoration: InputDecoration(
+                   prefixIcon: Icon(Icons.person_2_outlined,
+                                       color: Colors.white70,
+                                    ),
+                    labelText: 'Enter Password',
+                    labelStyle: TextStyle(
+                     color: Colors.white.withOpacity(0.9)
+                    ),filled: true,
+                 floatingLabelBehavior: FloatingLabelBehavior.never,
+                  fillColor: Colors.white.withOpacity(0.3),
+                  border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
+      ),
+                ),
+              ),),
+
+               SizedBox(
+                        height: 20
+                    ),
+              Container(
+             
+              
+              child: TextFormField(
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.9)
+                ),
+                cursorColor: Colors.white,
+                controller: _passwordTextController,
+                decoration: InputDecoration(
+                   prefixIcon: Icon(Icons.person_2_outlined,
+                                       color: Colors.white70,
+                                    ),
+                    labelText: 'Confirm Password',
+                    labelStyle: TextStyle(
+                     color: Colors.white.withOpacity(0.9)
+                    ),filled: true,
+                 floatingLabelBehavior: FloatingLabelBehavior.never,
+                  fillColor: Colors.white.withOpacity(0.3),
+                  border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                   borderSide: BorderSide(width: 0, style: BorderStyle.none),
+      ),
+                ),
+              ),),
+
+
                     SizedBox(
                         height: 20
                     ),
@@ -134,6 +224,6 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
               ))),
-    );
+      ),  );
   }
 }
