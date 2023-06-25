@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/area.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
+import 'package:firstproject/sign_in.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -129,7 +131,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  FirebaseAuth.instance.signOut().then((value) {
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) =>SignIn()));
+                  });
+                },
                 icon: Icon(Icons.logout),
               ),
               title: Text("Sign Out"),

@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/home.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/sign_up.dart';
@@ -97,7 +98,13 @@ class _SignInState extends State<SignIn> {
                 ),
               ),),
 
-                  signInSignUpButton(context, true, () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));}),
+                  signInSignUpButton(context, true, () {
+                    FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailTextController.text,
+                     password: _passwordTextContoller.text).then((value) {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                     });
+                    
+                    }),
                   signUpOption()
                 ],
               ),
