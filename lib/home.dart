@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/area.dart';
+import 'package:firstproject/auth_page.dart';
+import 'package:firstproject/forget_password.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/sign_in.dart';
 import 'package:firstproject/utils/color_utils.dart';
@@ -15,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final user =FirebaseAuth.instance.currentUser!;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -24,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(
-                "Aavani P K",
+                user.email!,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               accountEmail: Text(
@@ -124,7 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => Forget()));
+                },
                 icon: Icon(Icons.password_outlined),
               ),
               title: Text("Reset Password"),
@@ -134,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   FirebaseAuth.instance.signOut().then((value) {
                     Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) =>SignIn()));
+                    MaterialPageRoute(builder: (context) => AuthPage()));
                   });
                 },
                 icon: Icon(Icons.logout),
@@ -178,7 +183,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 logoWidget("lib/assets/images/logo.png"),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  
+                    onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
+                
+                  },
+                
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(20),
                     fixedSize: Size(300, 120),
@@ -210,9 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),),
                     ],
                   ),
-                  onPressed: () {
-                      Navigator.pushNamed(context, '/selectarea');
-                  },
+                 
                 ),
                 SizedBox(height: 40),
                 ElevatedButton(

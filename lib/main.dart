@@ -1,6 +1,11 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/area.dart';
+import 'package:firstproject/auth_page.dart';
+import 'package:firstproject/emailverify.dart';
+import 'package:firstproject/home.dart';
 import 'package:firstproject/sign_in.dart';
+import 'package:firstproject/util.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,7 +16,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
-
+final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -19,24 +24,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: Utils.messengerKey,
+      navigatorKey: navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+        
         primarySwatch: Colors.blue,
       ),
-      home: const SignIn(),
-      routes: {
-        '/selectarea':(context) => SelectArea(),
-      },
+      home:  MainPage(),
+      
     );
   }
 }
 
+class MainPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) =>Scaffold(
+    body: StreamBuilder<User?>( 
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.waiting){
+          return Center(child: CircularProgressIndicator());
+        }else if (snapshot.hasError){
+          return Center(child: Text('Something went wrong'),);
+        }
+        else if (snapshot.hasData){
+          return VerifyEmailPage();
+        }
+        else{
+        return AuthPage();
+        }
+      },
+    ),
+  );
+
+}
