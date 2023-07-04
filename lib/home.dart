@@ -26,126 +26,107 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
+              
               accountName: Text(
-                user.email!,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                "Gayathri",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 0, 11, 71),
+                  fontSize: 20, 
+                  fontWeight: FontWeight.bold),
               ),
               accountEmail: Text(
-                "aavanipk2002@gmail.com",
-                style: TextStyle(fontSize: 17),
+                user.email!,
+                style: TextStyle(
+                  color: Color.fromARGB(255, 0, 11, 71),
+                  fontSize: 19),
               ),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 7, 25, 127),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               currentAccountPicture: CircleAvatar(
                 child: Text(
-                  "A",
+                  "G",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 7, 25, 127),
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                backgroundColor: Colors.white,
+                backgroundColor: Color.fromARGB(255, 0, 11, 71),
                 radius: 100,
               ),
             ),
             Container(
-              margin: EdgeInsets.all(8),
+              margin: EdgeInsets.all(0),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 49, 120, 242),
+                color: Color.fromARGB(255, 0, 11, 71),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
+                  topLeft: Radius.circular(40),
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(0),
                   topRight: Radius.circular(40),
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(0.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Semester: IV",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Color.fromARGB(255, 255, 255, 255),
+                    SizedBox(height: 60),
+                    ListTile(
+                     leading: IconButton(
+                      onPressed: () {
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Forget()),
+                       );
+                      },
+                     icon: Container(
+                      child: Icon(
+                       Icons.password_outlined,
+                      ),
+                      color: Colors.white, // Set color to white
+                     ),
+                    ),
+                    title: Text(
+                     "Reset Password",
+                     style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                     ),
+                    ),
+                   ),
+                    ListTile(
+                     leading: IconButton(
+                      onPressed: () {
+                       FirebaseAuth.instance.signOut().then((value) {
+                        Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => AuthPage()),
+                        );
+                       });
+                      },
+                      icon: Container(
+                       child: Icon(
+                        Icons.logout,
+                       ),
+                       color: Colors.white, // Set color to white
+                       ),
+                      ),
+                      title: Text(
+                       "Sign Out",
+                       style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                       ),
                       ),
                     ),
-                    SizedBox(height: 3),
-                    Text(
-                      "Department: Information Technology",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      "Gender: Female",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                    SizedBox(height: 3),
-                    Text(
-                      "Phone no: 9496035500",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.all(10),
-                        fixedSize: Size(300, 60),
-                        textStyle: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        primary: Colors.white,
-                        onPrimary: Colors.indigo[900],
-                        elevation: 10,
-                        side: BorderSide(color: Colors.blue, width: 2),
-                      ),
-                      child: Text('Edit Profile'),
-                    ),
+                    SizedBox(height: 450),
                   ],
                 ),
               ),
             ),
-            ListTile(
-              leading: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.edit_sharp),
-              ),
-              title: Text("Edit Profile"),
-            ),
-            ListTile(
-              leading: IconButton(
-                onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => Forget()));
-                },
-                icon: Icon(Icons.password_outlined),
-              ),
-              title: Text("Reset Password"),
-            ),
-            ListTile(
-              leading: IconButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut().then((value) {
-                    Navigator.push(context, 
-                    MaterialPageRoute(builder: (context) => AuthPage()));
-                  });
-                },
-                icon: Icon(Icons.logout),
-              ),
-              title: Text("Sign Out"),
-            ),
+           
           ],
         ),
       ),
@@ -165,17 +146,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(1.0),
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(40),
+                  padding: EdgeInsets.all(20),
                   child: Text(
                     'Welcome to Dusty',
                     style: TextStyle(
-                      color: Colors.indigo,
+                      color: Color.fromARGB(255, 4, 13, 66),
                       fontSize: 37,
-                      fontStyle: FontStyle.italic,
+                    //  fontStyle: FontStyle.italic,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -183,16 +164,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 logoWidget("lib/assets/images/logo.png"),
                 SizedBox(height: 20),
                 ElevatedButton(
-                    onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
-                
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
                   },
-                
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(20),
                     fixedSize: Size(300, 120),
                     textStyle: TextStyle(
-            
                       fontWeight: FontWeight.bold,
                     ),
                     primary: Colors.white,
@@ -204,28 +182,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Flexible(
-                      child: Text(
-                        'Request for Cleaning',
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                       ), ),
+                        child: Text(
+                          'Request for Cleaning',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                       SizedBox(height: 10),
                       Flexible(
-                       child: Text(
-                        'You can tell me where to be Cleaned',
-                        style: TextStyle(fontSize: 14),
-                      ),),
+                        child: Text(
+                          'You can tell me where to be Cleaned',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
                     ],
                   ),
-                 
                 ),
                 SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
-                
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(20),
@@ -250,4 +228,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

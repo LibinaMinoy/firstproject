@@ -1,34 +1,31 @@
-
+ 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firstproject/forget_password.dart';
 import 'package:firstproject/home.dart';
-import 'package:firstproject/main.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/sign_up.dart';
-import 'package:firstproject/staff_login.dart';
+import 'package:firstproject/staff_home.dart';
 import 'package:firstproject/util.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
+
+import 'main.dart';
 
 
-
-class SignIn extends StatefulWidget {
-  final VoidCallback onClickedSignUp;
-  const SignIn({Key? key, required this.onClickedSignUp}) : super(key: key);
+class staffLogin extends StatefulWidget {
+  const staffLogin({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<staffLogin> createState() => _staffLoginState();
 }
 
-class _SignInState extends State<SignIn> {
-   final formKey = GlobalKey<FormState>();
-  TextEditingController _passwordTextContoller = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+class _staffLoginState extends State<staffLogin> {
+ final formKey = GlobalKey<FormState>();
+  TextEditingController passwordTextContoller = TextEditingController();
+  TextEditingController emailTextController = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+  return Scaffold(
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -55,13 +52,13 @@ class _SignInState extends State<SignIn> {
                       color: Colors.white.withOpacity(0.9),
                     ),
                     cursorColor: Colors.white,
-                    controller: _emailTextController,
+                    controller: emailTextController,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.person_2_outlined,
                         color: Colors.white70,
                       ),
-                      labelText: 'Cusat email',
+                      labelText: 'Email',
                       labelStyle: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                       ),
@@ -77,8 +74,8 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     validator: (value){
-                  if(value!.isEmpty ||!RegExp(r'^[a-zA-Z0-9_.+-]+@ug\.cusat\.ac\.in$').hasMatch(value!)){
-                    return "Enter cusat email";
+                  if(value!.isEmpty ||!RegExp(r'^[A-Za-z0-9._%+-]+@gmail\.com$').hasMatch(value!)){
+                    return "Enter Email";
                   }else{
                     return null;
                   }
@@ -93,7 +90,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     obscureText: true,
                     cursorColor: Colors.white,
-                    controller: _passwordTextContoller,
+                    controller: passwordTextContoller,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.lock_clock_outlined,
@@ -130,7 +127,7 @@ class _SignInState extends State<SignIn> {
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
                   child: ElevatedButton(
-                    onPressed: sign,
+                    onPressed: staffsign ,
                     child: Text(
                      'LOG IN',
                      style: const TextStyle(
@@ -148,97 +145,7 @@ class _SignInState extends State<SignIn> {
       ),
                   ),
                 ),
-                GestureDetector(
-                  child: Text(
-                    'Forget Password?',
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: Color.fromRGBO(203, 215, 237, 1),
-                      fontSize: 16,
-                    )
-                  ),
-                  onTap: () =>Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Forget(),)),
-                ),
-                SizedBox(height: 15),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(color: Colors.white,fontSize: 16),
-                    text: 'No account?  ',
-                    children: [
-                      TextSpan(
-                         recognizer: TapGestureRecognizer()
-                            ..onTap = widget.onClickedSignUp,
-                        text: 'Sign Up' ,
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Theme.of(context).colorScheme.secondary,
-                        )
-                      )
-                    ]
-                  )),
-                  SizedBox(height: 10),
-
-                  Container(
-               // height: 1.0,
-               // width: 450.0,
-               // color: Color.fromARGB(179, 255, 255, 255),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 1.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Text(
-                        "or",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 1.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => staffLogin()),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "lib/assets/images/sweep.png",
-                      width: 21.0,
-                      height: 21.0,
-                    ),
-                    SizedBox(width: 4.0),
-                    Text(
-                      "Cleaning Staff?",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold, 
-                        fontSize: 17,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                
               SizedBox(height: 15),
               ],
             ),
@@ -251,7 +158,7 @@ class _SignInState extends State<SignIn> {
 
  
   
-Future sign() async{
+Future staffsign() async{
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -260,8 +167,13 @@ Future sign() async{
    try {
   if(formKey.currentState!.validate()){
    await FirebaseAuth.instance.signInWithEmailAndPassword(
-     email: _emailTextController.text.trim(),
-      password: _passwordTextContoller.text.trim(),
+     email: emailTextController.text.trim(),
+      password: passwordTextContoller.text.trim(),
+      );
+       Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => staffHomePage()
+        ), // Replace `StaffLoginPage` with the actual page widget
       );
   }
 } on FirebaseAuthException catch (e) {
@@ -273,5 +185,4 @@ Utils.showSnackBar(e.message);
 }
 
 }
-
 

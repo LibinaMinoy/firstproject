@@ -284,6 +284,7 @@ class _SignUpState extends State<SignUp> {
       ), ) );
   }
   Future signup() async{
+
     showDialog(
     context: context,
     barrierDismissible: false,
@@ -291,11 +292,14 @@ class _SignUpState extends State<SignUp> {
      );
     try {
       if(formKey.currentState!.validate()){
+        
   await FirebaseAuth.instance.createUserWithEmailAndPassword
   (
     email: _emailTextController.text.trim(),
    password: _passwordTextController.text.trim(),
    );
+
+   // data store connection is given here.
       }
 } on FirebaseAuthException catch (e) {
   print(e);

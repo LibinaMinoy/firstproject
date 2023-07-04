@@ -5,6 +5,8 @@ import 'package:firstproject/auth_page.dart';
 import 'package:firstproject/emailverify.dart';
 import 'package:firstproject/home.dart';
 import 'package:firstproject/sign_in.dart';
+import 'package:firstproject/splash.dart';
+import 'package:firstproject/staff_home.dart';
 import 'package:firstproject/util.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,31 +33,41 @@ class MyApp extends StatelessWidget {
         
         primarySwatch: Colors.blue,
       ),
-      home:  MainPage(),
+      home:  SplashScreen(),
       
     );
   }
 }
 
-class MainPage extends StatelessWidget{
+class MainPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) =>Scaffold(
-    body: StreamBuilder<User?>( 
+  Widget build(BuildContext context) => Scaffold(
+    body: StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting){
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
-        }else if (snapshot.hasError){
+        } else if (snapshot.hasError) {
           return Center(child: Text('Something went wrong'),);
-        }
-        else if (snapshot.hasData){
-          return VerifyEmailPage();
-        }
-        else{
-        return AuthPage();
+        } else if (snapshot.hasData) {
+          final user = snapshot.data!;
+          final email = user.email;
+
+          // Check if the email is for a student or staff
+          if (email != null && email.endsWith('@ug.cusat.ac.in')) {
+            // User is a student
+            return VerifyEmailPage();
+          } else if (email != null && email.endsWith('staff@gmail.com')) {
+            // User is staff
+            return staffHomePage();
+          } else {
+            // User email does not match student or staff format
+            return Center(child: Text('Invalid user type'),);
+          }
+        } else {
+          return AuthPage();
         }
       },
     ),
   );
-
 }
