@@ -150,20 +150,20 @@ class _staffHomePageState extends State<staffHomePage> {
       body: StreamBuilder(
         stream: users.snapshots() ,
         builder: (context,AsyncSnapshot snapshot){
-          if(snapshot.hasData){
-            return ListView.builder(
-              itemCount:  snapshot.data!.docs.length,
-              itemBuilder: (context, index){
-                final DocumentSnapshot usersnap = snapshot.data.docs[index];
-                bool isChecked = usersnap['done'] ?? false; // Retrieve the checkbox state from the database
-                
-
+         if (snapshot.hasData) {
+      final docs = snapshot.data.docs.reversed.toList(); // Reverse the order of the docs list
+      
+      return ListView.builder(
+        itemCount: docs.length,
+        itemBuilder: (context, index) {
+          final DocumentSnapshot usersnap = docs[index];
+          bool isChecked = usersnap['done'] ?? false;
                 return Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 80,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(17),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -183,48 +183,50 @@ class _staffHomePageState extends State<staffHomePage> {
                         style: TextStyle(fontSize: 25),
                         ),),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                      
-                          Text(usersnap['specifiedarea'],
-                          style: TextStyle(fontWeight: FontWeight.bold),),
-                          
-                          Text('(${usersnap['area']}),',style: TextStyle(fontWeight: FontWeight.bold),),  // Add a comma after "area"
-                              Text('${usersnap['floor']}floor',
-                              style: TextStyle(fontWeight: FontWeight.bold),),
-                           Text('Reason: ${usersnap['reason']}',
-                           style: TextStyle(fontWeight: FontWeight.bold),),
-                        ],
-                
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                      
-                          Text(usersnap['date'],
-                          style: TextStyle(fontWeight: FontWeight.bold),),
-                          
-                        ],
-                
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                       Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Checkbox(
-                                  value: isChecked,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      isChecked = newValue ?? false;
-                                      users.doc(usersnap.id).update({'done': isChecked}); // Update the checkbox state in the database
-                                    });
-                                  },
-                                  checkColor: Colors.white, // Set the color of the check icon
-                                   activeColor: Color.fromARGB(255, 8, 51, 83), // Set the color of the checkbox when checked
-                                ),
+                        
+                            Text(usersnap['specifiedarea'],
+                            style: TextStyle(fontWeight: FontWeight.bold),),
+                            
+                            Text('(${usersnap['area']}),',style: TextStyle(fontWeight: FontWeight.bold),),  // Add a comma after "area"
+                                Text('${usersnap['floor']}floor',
+                                style: TextStyle(fontWeight: FontWeight.bold),),
+                             Text('Reason: ${usersnap['reason']}',
+                             style: TextStyle(fontWeight: FontWeight.bold),),
                           ],
+                                      
                         ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                      
+                          Center(
+                            child: Text(usersnap['date'],
+                            style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+
+                           Center(
+                             child: Checkbox(
+                                    value: isChecked,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        isChecked = newValue ?? false;
+                                        users.doc(usersnap.id).update({'done': isChecked}); // Update the checkbox state in the database
+                                      });
+                                    },
+                                    checkColor: Colors.white, // Set the color of the check icon
+                                     activeColor: Color.fromARGB(255, 8, 51, 83), // Set the color of the checkbox when checked
+                                  ),
+                           ),
+                          
+                        ],
                 
+                      ),
+                      
                     ]
                     
                     ),

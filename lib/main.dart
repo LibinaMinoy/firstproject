@@ -1,16 +1,18 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/area.dart';
 import 'package:firstproject/auth_page.dart';
 import 'package:firstproject/emailverify.dart';
 import 'package:firstproject/home.dart';
+import 'package:firstproject/home_headstaff.dart';
 import 'package:firstproject/sign_in.dart';
 import 'package:firstproject/splash.dart';
-import 'package:firstproject/staff_home.dart';
+import 'package:firstproject/home_staff.dart';
 import 'package:firstproject/util.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'colors.dart';
 
 
 Future<void> main() async {
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         
-        primarySwatch: Colors.blue,
+        primarySwatch: primary,
       ),
       home:  SplashScreen(),
       
@@ -54,20 +56,27 @@ class MainPage extends StatelessWidget {
           final email = user.email;
 
           // Check if the email is for a student or staff
-          if (email != null && email.endsWith('@ug.cusat.ac.in')) {
-            // User is a student
-            return VerifyEmailPage();
-          } else if (email != null && email.endsWith('staff@gmail.com')) {
-            // User is staff
-            return staffHomePage();
-          } else {
-            // User email does not match student or staff format
-            return Center(child: Text('Invalid user type'),);
-          }
+           if (email != null) {
+              if (email == 'headstaff@gmail.com') {
+                // User is the head staff
+                return HeadHomepage();
+              } else if (email.endsWith('@gmail.com')) {
+                // User is staff
+                return staffHomePage();
+              } else if (email.endsWith('@ug.cusat.ac.in')) {
+                // User is a student
+                return VerifyEmailPage();
+              } else {
+                // Invalid user type
+                return Center(child: Text('Invalid user type'));
+              }
+            } else {
+              return Center(child: Text('Invalid user type'));
+            }
         } else {
           return AuthPage();
         }
       },
-    ),
-  );
+  ),
+ );
 }

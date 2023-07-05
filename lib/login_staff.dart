@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/home.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/sign_up.dart';
-import 'package:firstproject/staff_home.dart';
+import 'package:firstproject/home_staff.dart';
 import 'package:firstproject/util.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,25 @@ class _staffLoginState extends State<staffLogin> {
             child: Column(
               children: <Widget>[
                 logoWidget("lib/assets/images/logo.png"),
-                SizedBox(height: 30),
+                SizedBox(height: 20),
+                Text(
+                 "STAFF LOGIN",
+                  style: TextStyle(
+                  fontSize: 30,
+                 fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 1, 62, 112),
+                  shadows: [
+                  Shadow(
+                  color: Colors.black.withOpacity(0.4),
+                  blurRadius: 4,
+                  offset: Offset(0, 2),
+                  ),
+                  ],
+                  ),
+                  ),
+
+                SizedBox(height: 20),
+
                 Container(
                   child: TextFormField(
                     style: TextStyle(
@@ -75,7 +93,7 @@ class _staffLoginState extends State<staffLogin> {
                     ),
                     validator: (value){
                   if(value!.isEmpty ||!RegExp(r'^[A-Za-z0-9._%+-]+@gmail\.com$').hasMatch(value!)){
-                    return "Enter Email";
+                    return "Enter valid Email";
                   }else{
                     return null;
                   }

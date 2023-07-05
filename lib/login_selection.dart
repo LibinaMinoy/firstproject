@@ -1,17 +1,22 @@
+
+
+import 'package:firstproject/login_headstaff.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 
-class viewComplaints extends StatefulWidget {
-  const viewComplaints({Key? key}) : super(key: key);
+import 'login_staff.dart';
+
+class selectStaff extends StatefulWidget {
+  const selectStaff({super.key});
 
   @override
-  State<viewComplaints> createState() => _viewComplaintsState();
+  State<selectStaff> createState() => _selectStaffState();
 }
 
-class _viewComplaintsState extends State<viewComplaints> {
+class _selectStaffState extends State<selectStaff> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -31,7 +36,10 @@ class _viewComplaintsState extends State<viewComplaints> {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Navigate to invigilator page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => invigiLogin()),
+                  );// Navigate to invigilator page
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
@@ -54,7 +62,10 @@ class _viewComplaintsState extends State<viewComplaints> {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Navigate to cleaning staff page
+               Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => staffLogin()),
+                  ); // Navigate to cleaning staff page
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,

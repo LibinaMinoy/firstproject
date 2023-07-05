@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:intl/intl.dart';
 
 class SelectArea extends StatefulWidget {
   const SelectArea({Key? key});
@@ -32,14 +33,32 @@ class _SelectAreaState extends State<SelectArea> {
       FirebaseFirestore.instance.collection('users');
 
   
-  TextEditingController _dateTextController = TextEditingController();
   TextEditingController _specifyAreaController = TextEditingController();
   TextEditingController _issueController = TextEditingController();
+  TextEditingController _dateTextController = TextEditingController();
+
+  DateTime? _selectedDate;
 
   bool _isDateValid(String date) {
     final datePattern = r'^\d{2}/\d{2}/\d{2}$';
     final regex = RegExp(datePattern);
     return regex.hasMatch(date);
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2025),
+    );
+
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+        _dateTextController.text = DateFormat('dd/MM/yy').format(picked);
+      });
+    }
   }
 
   void addUser() {
@@ -87,18 +106,18 @@ class _SelectAreaState extends State<SelectArea> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     style: TextStyle(
-                        color: Color.fromARGB(255, 16, 16, 16).withOpacity(0.9)),
-                    cursorColor: const Color.fromARGB(255, 9, 8, 8),
+                        color: Color.fromARGB(255, 8, 18, 71).withOpacity(0.9)),
+                    cursorColor: const Color.fromARGB(255, 8, 18, 71),
                     controller: _dateTextController,
+                    onTap: () {
+                      _selectDate(context);
+                    },
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.calendar_today,
                         color: const Color.fromARGB(179, 14, 13, 13),
                       ),
                       labelText: 'Date',
-                      labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 11, 10, 10).withOpacity(0.9)),
-                      filled: true,
                     ),
                   ),
                 ),
@@ -109,6 +128,7 @@ class _SelectAreaState extends State<SelectArea> {
                 child: DropdownButtonFormField(
                   decoration: InputDecoration(
                     label: Text("Select Department"),
+                    
                   ),
                   items: departments
                       .map((e) => DropdownMenuItem(child: Text(e), value: e))
@@ -145,10 +165,8 @@ class _SelectAreaState extends State<SelectArea> {
                     cursorColor: const Color.fromARGB(255, 9, 8, 8),
                     controller: _specifyAreaController,
                     decoration: InputDecoration(
-                      labelText: 'SPECIFY THE AREA\nclassroom no/lab name',
-                      labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 11, 10, 10).withOpacity(0.9)),
-                      filled: true,
+                      labelText: 'SPECIFY THE AREA(classroom no/lab name)',
+                      
                     ),
                   ),
                 ),
@@ -158,9 +176,7 @@ class _SelectAreaState extends State<SelectArea> {
                 child: DropdownButtonFormField(
                   decoration: InputDecoration(
                     label: Text("Select Floor"),
-                    labelStyle: TextStyle(
-                        color: Color.fromARGB(255, 11, 10, 10).withOpacity(0.9)),
-                    filled: true,
+                    
                   ),
                   items: floor
                       .map((e) => DropdownMenuItem(child: Text(e), value: e))
@@ -181,10 +197,8 @@ class _SelectAreaState extends State<SelectArea> {
                     cursorColor: const Color.fromARGB(255, 9, 8, 8),
                     controller: _issueController,
                     decoration: InputDecoration(
-                      labelText: 'what is the issue?\n(spills,dust)',
-                      labelStyle: TextStyle(
-                          color: Color.fromARGB(255, 11, 10, 10).withOpacity(0.9)),
-                      filled: true,
+                      labelText: 'what is the issue?(spills,dust)',
+                    
                     ),
                   ),
                 ),
@@ -198,7 +212,7 @@ class _SelectAreaState extends State<SelectArea> {
                       selectedArea == null ||
                       selectedFloor == null ||
                       _dateTextController.text.isEmpty ||
-                    
+                      _specifyAreaController.text.isEmpty ||
                       _issueController.text.isEmpty) {
                     // Fields are not selected or empty, show an error message
                     showDialog(
@@ -249,7 +263,7 @@ class _SelectAreaState extends State<SelectArea> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 7, 19, 92),
+                  primary: Color.fromARGB(255, 5, 10, 67).withOpacity(0.9),
                   // Set background color to white
                 ),
                 child: Container(
@@ -283,7 +297,7 @@ class _SelectAreaState extends State<SelectArea> {
             ],
           ),
         ),
-      ),
-    );
+    ),
+  );
   }
 }
