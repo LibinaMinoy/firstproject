@@ -192,7 +192,7 @@ class _staffHomePageState extends State<staffHomePage> {
                             style: TextStyle(fontWeight: FontWeight.bold),),
                             
                             Text('(${usersnap['area']}),',style: TextStyle(fontWeight: FontWeight.bold),),  // Add a comma after "area"
-                                Text('${usersnap['floor']}floor',
+                                Text('${usersnap['floor']} floor',
                                 style: TextStyle(fontWeight: FontWeight.bold),),
                              Text('Reason: ${usersnap['reason']}',
                              style: TextStyle(fontWeight: FontWeight.bold),),

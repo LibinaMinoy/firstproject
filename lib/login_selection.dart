@@ -1,5 +1,3 @@
-
-
 import 'package:firstproject/login_headstaff.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +21,12 @@ class _selectStaffState extends State<selectStaff> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              hexStringToColor("#CED9D9"),
-              hexStringToColor("#2E86C1"),
-              hexStringToColor("#070A52"),
-            ],
+                hexStringToColor("#0f2652"),
+                hexStringToColor("#CED9D9"),
+                hexStringToColor("#0f2652"),
+                //hexStringToColor("#CED9D9"),
+
+              ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -38,28 +38,63 @@ class _selectStaffState extends State<selectStaff> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => invigiLogin()),
+                  MaterialPageRoute(builder: (context) => LoginPage1()),
                   );// Navigate to invigilator page
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.white,
+                primary: Color.fromARGB(255, 2, 29, 84),
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(10),
               ),
               child: CircleAvatar(
-                radius: 80,
+                radius: 100,
                 backgroundColor: Colors.transparent,
                 child: Text(
                   "HEAD STAFF",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue,
+                    color: Color.fromARGB(255, 205, 205, 205),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 60),
+             Container(
+               // height: 1.0,
+               // width: 450.0,
+               // color: Color.fromARGB(179, 255, 255, 255),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 2.0,
+                        color: Color.fromARGB(255, 8, 18, 71),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        "or",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color.fromARGB(255, 8, 18, 71),
+                          fontWeight: FontWeight.bold,
+                          
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 2.0,
+                        color: Color.fromARGB(255, 8, 18, 71),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
                Navigator.push(
@@ -68,21 +103,23 @@ class _selectStaffState extends State<selectStaff> {
                   ); // Navigate to cleaning staff page
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.white,
+                primary: Color.fromARGB(255, 2, 29, 84),
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(10),
               ),
               child: CircleAvatar(
-                radius: 80,
+                radius: 100,
                 backgroundColor: Colors.transparent,
-                child: Center(
+                child: Align(
+                  alignment: Alignment.center, 
                   child: Text(
-                    "CLEANING STAFF",
+                    "CLEANING \n    STAFF",
                     style: TextStyle(
                       fontSize: 25,
+                      
                       fontWeight: FontWeight.bold,
                       
-                      color: Colors.blueGrey,
+                      color: Color.fromARGB(255, 205, 205, 205),
                     ),
                   ),
                 ),
@@ -90,7 +127,7 @@ class _selectStaffState extends State<selectStaff> {
             ),
           ],
         ),
-      ),
-    );
+     ),
+   );
   }
 }

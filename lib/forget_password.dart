@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/util.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:firstproject/colours.dart';
+
 
 class Forget extends StatefulWidget {
   const Forget({super.key});
@@ -23,7 +25,7 @@ class _ForgetState extends State<Forget> {
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 71, 156, 192),
+       // backgroundColor: Color.fromARGB(255, 71, 156, 192),
         
         title: Text('Reset Password'),
       ),
@@ -34,9 +36,8 @@ class _ForgetState extends State<Forget> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
+                hexStringToColor("#081247"),
                 hexStringToColor("#CED9D9"),
-                hexStringToColor("#2E86C1"),
-                hexStringToColor("070A52"),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -112,8 +113,7 @@ class _ForgetState extends State<Forget> {
 
          Utils.showSnackBar(e.message);
          Navigator.of(context).pop();
-         }
-
     }
+  }
   
 }

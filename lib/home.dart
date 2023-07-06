@@ -6,6 +6,8 @@ import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/sign_in.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:firstproject/colours.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,49 +21,69 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final user =FirebaseAuth.instance.currentUser!;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(320), // Set the preferred height here
+        child: AppBar(
+          backgroundColor: Color.fromARGB(255, 0, 11, 71),
+          elevation: 0,
+           flexibleSpace: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            SizedBox(height: 90),
+            Padding(
+             padding: const EdgeInsets.only(bottom: 8.0),
+             child: Image.asset(
+             'lib/assets/images/logo.png', // Replace with the path to your logo image
+              width: 150, // Set your desired width for the logo
+              height: 150, // Set your desired height for the logo
+                ),
+              ),
+               SizedBox(height: 30),
+                Text(
+              'Welcome to Dusty', // Add the "Welcome to Dusty" text here
+              style: TextStyle(
+               color: Color.fromARGB(255, 255, 255, 255),
+               fontSize: 37,
+               fontStyle: FontStyle.italic,
+               fontWeight: FontWeight.bold,
+              ),
+            ),
+           ],
+         ),
+         
+        ),
       ),
       drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              
-              accountName: Text(
-                "Gayathri",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 11, 71),
-                  fontSize: 20, 
-                  fontWeight: FontWeight.bold),
-              ),
-              accountEmail: Text(
-                user.email!,
-                style: TextStyle(
-                  color: Color.fromARGB(255, 0, 11, 71),
-                  fontSize: 19),
-              ),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
-              currentAccountPicture: CircleAvatar(
-                child: Text(
-                  "G",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                backgroundColor: Color.fromARGB(255, 0, 11, 71),
-                radius: 100,
-              ),
+  child: ListView(
+    children: [
+      UserAccountsDrawerHeader(
+  accountName: Text(''), // Empty string as the accountName
+  accountEmail: Text(
+    user.email!,
+    style: TextStyle(
+      color: Color.fromARGB(255, 0, 11, 71),
+      fontSize: 19,
+    ),
+  ),
+  decoration: BoxDecoration(
+    color: Color.fromARGB(255, 255, 255, 255),
+  ),
+  currentAccountPicture: CircleAvatar(
+    child: Icon(
+      Icons.person,
+      color: Color.fromARGB(255, 255, 255, 255),
+      size: 30.0,
+    ),
+    backgroundColor: Color.fromARGB(255, 0, 11, 71),
+    radius: 100,
+              ),  
             ),
             Container(
               margin: EdgeInsets.all(0),
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 0, 11, 71),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
+                  topLeft: Radius.circular(50),
                   bottomLeft: Radius.circular(0),
                   bottomRight: Radius.circular(0),
                   topRight: Radius.circular(40),
@@ -135,75 +157,63 @@ class _HomeScreenState extends State<HomeScreen> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                hexStringToColor("#CED9D9"),
-                hexStringToColor("#2E86C1"),
-                hexStringToColor("070A52"),
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+            color: Color.fromARGB(255, 255, 255, 255)
           ),
           child: Padding(
-            padding: EdgeInsets.all(1.0),
+            padding: EdgeInsets.all(0),
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text(
-                    'Welcome to Dusty',
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 4, 13, 66),
-                      fontSize: 37,
-                    //  fontStyle: FontStyle.italic,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                logoWidget("lib/assets/images/logo.png"),
-                SizedBox(height: 20),
+               
+                SizedBox(height: 80),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
+                    onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
+                
                   },
+                
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(20),
-                    fixedSize: Size(300, 120),
+                    padding: EdgeInsets.all(7),
+                    fixedSize: Size(300, 100),
                     textStyle: TextStyle(
+            
                       fontWeight: FontWeight.bold,
                     ),
-                    primary: Colors.white,
-                    onPrimary: Colors.indigo[900],
+                    primary: Color.fromARGB(255, 8, 18, 71),
+                    onPrimary: Color.fromARGB(255, 255, 255, 255),
                     elevation: 15,
-                    shadowColor: Colors.blue,
-                    side: BorderSide(color: Colors.blue, width: 2),
+                    shadowColor: Color.fromARGB(255, 0, 0, 0),
+                    side: BorderSide(color: Color.fromARGB(255, 19, 11, 103), width: 2),
+                          
                   ),
                   child: Column(
                     children: [
+                      SizedBox(height: 20),
                       Flexible(
-                        child: Text(
-                          'Request for Cleaning',
-                          style: TextStyle(
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                      child: Text(
+                        'Request for Cleaning',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                       ), ),
                       ),
                       SizedBox(height: 10),
                       Flexible(
-                        child: Text(
-                          'You can tell me where to be Cleaned',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
+                       child: Text(
+                        'You can tell me where to be Cleaned',
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 15
+                          ),
+                      ),),
                     ],
                   ),
+                 
                 ),
                 SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
+                
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(20),
@@ -212,11 +222,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
-                    primary: Colors.white,
-                    onPrimary: Colors.indigo[900],
-                    elevation: 15,
-                    shadowColor: Colors.blue,
-                    side: BorderSide(color: Colors.blue, width: 2),
+                    primary: Color.fromARGB(255,8, 18, 71),
+                    onPrimary: Color.fromARGB(255, 255, 255, 255),
+                    elevation: 20,
+                    shadowColor: Color.fromARGB(255, 0, 0, 0),
+                    side: BorderSide(color: Color.fromARGB(255,8, 18, 71), width: 2),
                   ),
                   child: Text('Any Complaint?'),
                 ),
@@ -224,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
+     ),
+   );
+ }
 }

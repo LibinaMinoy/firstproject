@@ -1,12 +1,10 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/forget_password.dart';
-import 'package:firstproject/home.dart';
 import 'package:firstproject/main.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/login_selection.dart';
-import 'package:firstproject/sign_up.dart';
-import 'package:firstproject/login_staff.dart';
+
 import 'package:firstproject/util.dart';
 import 'package:firstproject/utils/color_utils.dart';
 import 'package:flutter/material.dart';

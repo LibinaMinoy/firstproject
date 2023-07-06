@@ -90,13 +90,16 @@ class _SelectAreaState extends State<SelectArea> {
                 padding: EdgeInsets.all(12),
                 height: MediaQuery.of(context).size.height * 0.25,
                 width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Text(
-                    'SELECT THE AREA',
-                    style: TextStyle(
+                child:  Align(
+                  alignment: Alignment.centerLeft,
+                   child: Text(
+                    'SELECT AREA',
+                     style: TextStyle(
                         fontStyle: FontStyle.italic,
                         fontSize: 40,
-                        color: Color.fromARGB(255, 8, 18, 71).withOpacity(.9),
+                        color: Color.fromARGB(255, 8, 18, 71)
+                        //.withOpacity(.9)
+                        ,
                         fontWeight: FontWeight.w600),
                   ),
                 ),
@@ -203,9 +206,7 @@ class _SelectAreaState extends State<SelectArea> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 25,),
               ElevatedButton(
                 onPressed: () {
                   if (selectedDepartment == null ||
@@ -263,12 +264,12 @@ class _SelectAreaState extends State<SelectArea> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(255, 5, 10, 67).withOpacity(0.9),
+                  primary: Color.fromARGB(255,8, 18, 71).withOpacity(0.9),
                   // Set background color to white
                 ),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  width: MediaQuery.of(context).size.width * 2.3,
+                  height: MediaQuery.of(context).size.height * 0.06,
                   padding: EdgeInsets.symmetric(
                     vertical: 5,
                     horizontal: 12,
@@ -297,7 +298,7 @@ class _SelectAreaState extends State<SelectArea> {
             ],
           ),
         ),
-    ),
+   ),
   );
-  }
+ }
 }

@@ -176,31 +176,37 @@ class _staffLoginState extends State<staffLogin> {
 
  
   
-Future staffsign() async{
+Future<bool> staffsign() async {
   showDialog(
     context: context,
     barrierDismissible: false,
-     builder: (context) => Center(child: CircularProgressIndicator(),)
-     );
-   try {
-  if(formKey.currentState!.validate()){
-   await FirebaseAuth.instance.signInWithEmailAndPassword(
-     email: emailTextController.text.trim(),
-      password: passwordTextContoller.text.trim(),
-      );
-       Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => staffHomePage()
-        ), // Replace `StaffLoginPage` with the actual page widget
-      );
+    builder: (context) => Center(child: CircularProgressIndicator()),
+  );
+  try {
+    if (formKey.currentState!.validate()) {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailTextController.text.trim(),
+        password: passwordTextContoller.text.trim(),
+      ).then((value) {
+        Navigator.of(context).pop(); // Close the loading dialog
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => staffHomePage()),
+        );
+      });
+      return true; // Sign-in successful
+    }
+  } on FirebaseAuthException catch (e) {
+    print(e);
+    Utils.showSnackBar(e.message);
   }
-} on FirebaseAuthException catch (e) {
-  print(e);
-  
-Utils.showSnackBar(e.message);
+  Navigator.of(context).pop(); // Close the loading dialog
+  return false; // Sign-in failed
 }
-  navigatorKey.currentState!.popUntil((route) => route.isFirst);
-}
+
+// ...
+
+
 
 }
 
