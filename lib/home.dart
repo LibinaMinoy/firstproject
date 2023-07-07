@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/area.dart';
 import 'package:firstproject/auth_page.dart';
 import 'package:firstproject/forget_password.dart';
+import 'package:firstproject/home_complaint.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
 import 'package:firstproject/sign_in.dart';
 import 'package:firstproject/utils/color_utils.dart';
@@ -212,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => SelectArea()));
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => NewComplaint()));
                 
                   },
                   style: ElevatedButton.styleFrom(

@@ -18,7 +18,7 @@ class _RequestConfirmPageState extends State<RequestConfirmPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'THANK YOU FOR INFORMING,\nYOUR REQUEST IS NOTED',
+              'THANK YOU FOR INFORMING US,\n',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
@@ -28,12 +28,13 @@ class _RequestConfirmPageState extends State<RequestConfirmPage> {
             SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed: () {
-               Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
-                      ),
-                    );
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                  (route) => false, // Remove all previous routes from the stack
+                );
               },
               icon: Icon(Icons.arrow_back),
               label: Text('Return to Home Screen'),

@@ -171,7 +171,7 @@ class _SignInState extends State<SignIn> {
                         text: 'Sign Up' ,
                         style: TextStyle(
                           decoration: TextDecoration.underline,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Color.fromARGB(255, 216, 232, 247),
                         )
                       )
                     ]
