@@ -1,4 +1,3 @@
-// new_complaint.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firstproject/req_confirm.dart';
 import 'package:flutter/material.dart';
@@ -9,35 +8,31 @@ class NewComplaint extends StatefulWidget {
 }
 
 class _NewComplaintState extends State<NewComplaint> {
-
-
-  final _formKey = GlobalKey<FormState>();
-  String _title = '';
-  String _description = '';
-
-
-  final CollectionReference newComplaint =
+ final _formKey = GlobalKey<FormState>();
+ String _title = '';
+ String _description = '';
+ final CollectionReference newComplaint =
       FirebaseFirestore.instance.collection('complaint');
 
-  void addComplaint(){
-    try {
-      final data = {
-        'title': _title,
-        'discription': _description,
-        
-      };
-      newComplaint.add(data);
-    } catch (e) {
-      print('Error adding user: $e');
-    }
-
+ void addComplaint(){
+  try {
+   final data = {
+    'title': _title,
+    'discription': _description,
+   };
+   newComplaint.add(data);
+  } 
+  catch (e) 
+  {
+   print('Error adding user: $e');
   }
+ }
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Complaint'),
+        //title: Text('Complaint'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -47,10 +42,22 @@ class _NewComplaintState extends State<NewComplaint> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                 Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    '\nComplaint',
+                    style: TextStyle(
+                      fontSize: 37, // Adjust the size as desired
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 3, 19, 65),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 40),
                 Container(
                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color.fromARGB(255, 27, 15, 97),
+                    color: Color.fromARGB(255, 17, 5, 84),
                     boxShadow: [
                       BoxShadow(
                         color: Color.fromARGB(255, 139, 168, 193),
@@ -69,6 +76,7 @@ class _NewComplaintState extends State<NewComplaint> {
                                }
                              return null;
                           },
+                          
                         decoration: InputDecoration(
                          labelText: 'Title',
                          labelStyle: TextStyle(
@@ -117,8 +125,8 @@ class _NewComplaintState extends State<NewComplaint> {
                 ),
                 SizedBox(height: 16),
                Container(
-                 width: MediaQuery.of(context).size.width, height: 50,
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                 
+                  margin: const EdgeInsets.fromLTRB(100, 250, 100, 20),
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(90)),
                  child: ElevatedButton(
                     onPressed: () {
@@ -126,7 +134,7 @@ class _NewComplaintState extends State<NewComplaint> {
                         _formKey.currentState!.save();
                         // TODO: Handle complaint registration and submission.
                         // For this example, let's simulate a delay of 2 seconds to mimic the registration process.
-                        Future.delayed(Duration(seconds: 1), () {
+                        Future.delayed(Duration(seconds: 2), () {
                          // All fields are valid, add the user
                         addComplaint();
                         Navigator.push(
@@ -140,9 +148,11 @@ class _NewComplaintState extends State<NewComplaint> {
                     },
                     child: Center(
                       child: 
-                      Text('Register Complaint',
+                      Text('Register',
                       style: const TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                       color: Color.fromARGB(255, 242, 242, 242), 
+                       fontWeight: FontWeight.bold, 
+                       fontSize: 16),
       ),
       
                     ),
@@ -152,7 +162,7 @@ class _NewComplaintState extends State<NewComplaint> {
             ),
           ),
            ),
-      ),
+    ),
    );
   }
 }

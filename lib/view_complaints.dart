@@ -25,7 +25,7 @@ class _viewComplaintsState extends State<viewComplaints> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Container(
-          height: 200,
+          height: 300,
           width: 400,
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class _viewComplaintsState extends State<viewComplaints> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(150),
+        preferredSize: Size.fromHeight(170),
          child: AppBar(
           flexibleSpace: ClipRRect(
             borderRadius: BorderRadius.only(
@@ -84,25 +84,18 @@ class _viewComplaintsState extends State<viewComplaints> {
             ),
             child: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFF00145D),
-                    Color(0xFF001B83),
-                  ],
-                ),
+               color: Color.fromARGB(255, 0, 11, 71)
               ),
 
 
               child: Align(
-                alignment: Alignment.bottomCenter,
+                alignment: Alignment.center,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    'COMPLAINT',
+                    '\nCOMPLAINT',
                     style: TextStyle(
-                      fontSize: 30, // Adjust the size as desired
+                      fontSize: 35, // Adjust the size as desired
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -136,10 +129,10 @@ class _viewComplaintsState extends State<viewComplaints> {
                       height: 80,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 255, 255, 255),
                         boxShadow: [
                           BoxShadow(
-                            color: Color.fromARGB(255, 161, 190, 215),
+                            color: Color.fromARGB(255, 189, 189, 189),
                             blurRadius: 5,
                             spreadRadius: 5,
                           )
@@ -156,7 +149,7 @@ class _viewComplaintsState extends State<viewComplaints> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
-                                  color: Color.fromARGB(255, 7, 51, 87),
+                                  color: Color.fromARGB(255, 19, 9, 94),
                                   shadows: [
                                       Shadow(
                                        color: Colors.black.withOpacity(0.4),
@@ -235,6 +228,6 @@ class _viewComplaintsState extends State<viewComplaints> {
           return Container();
         },
       ),
-    );
+   );
   }
 }

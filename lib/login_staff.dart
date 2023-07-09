@@ -1,4 +1,3 @@
- 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/home.dart';
 import 'package:firstproject/reusable_widgets/reusable_widget.dart';
@@ -32,8 +31,9 @@ class _staffLoginState extends State<staffLogin> {
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
                 hexStringToColor("#CED9D9"),
-                hexStringToColor("#2E86C1"),
-                hexStringToColor("070A52")
+                //hexStringToColor("#2E86C1"),
+                hexStringToColor("#1147ab"),
+                hexStringToColor("#081247")
               ],begin: Alignment.topCenter, end: Alignment.bottomCenter )),
           child: SingleChildScrollView(
             child: Padding(
@@ -49,20 +49,20 @@ class _staffLoginState extends State<staffLogin> {
                 Text(
                  "STAFF LOGIN",
                   style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 32,
                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 1, 62, 112),
+                  color: Color.fromARGB(255, 178, 178, 178),
                   shadows: [
                   Shadow(
-                  color: Colors.black.withOpacity(0.4),
-                  blurRadius: 4,
+                  color: Color.fromARGB(255, 1, 0, 0).withOpacity(0.4),
+                  blurRadius: 200,
                   offset: Offset(0, 2),
                   ),
                   ],
                   ),
                   ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 50),
 
                 Container(
                   child: TextFormField(
@@ -114,7 +114,7 @@ class _staffLoginState extends State<staffLogin> {
                         Icons.lock_clock_outlined,
                         color: Colors.white70,
                       ),
-                      labelText: 'password',
+                      labelText: 'Password',
                       labelStyle: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                       ),
@@ -140,6 +140,8 @@ class _staffLoginState extends State<staffLogin> {
                 
                   ),
                 ),
+                SizedBox(height: 10),
+
                 Container(
                   width: MediaQuery.of(context).size.width, height: 50,
                   margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
@@ -209,4 +211,3 @@ Future<bool> staffsign() async {
 
 
 }
-

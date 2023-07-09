@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firstproject/forget_password.dart';
 import 'package:firstproject/main.dart';
@@ -34,8 +33,9 @@ class _SignInState extends State<SignIn> {
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
                 hexStringToColor("#CED9D9"),
-                hexStringToColor("#2E86C1"),
-                hexStringToColor("070A52")
+                //hexStringToColor("#2E86C1"),
+                hexStringToColor("#1147ab"),
+                hexStringToColor("#081247")
               ],begin: Alignment.topCenter, end: Alignment.bottomCenter )),
           child: SingleChildScrollView(
             child: Padding(
@@ -60,7 +60,7 @@ class _SignInState extends State<SignIn> {
                         Icons.person_2_outlined,
                         color: Colors.white70,
                       ),
-                      labelText: 'Cusat email',
+                      labelText: 'Cusat Email',
                       labelStyle: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                       ),
@@ -98,7 +98,7 @@ class _SignInState extends State<SignIn> {
                         Icons.lock_clock_outlined,
                         color: Colors.white70,
                       ),
-                      labelText: 'password',
+                      labelText: 'Password',
                       labelStyle: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                       ),
@@ -170,6 +170,7 @@ class _SignInState extends State<SignIn> {
                             ..onTap = widget.onClickedSignUp,
                         text: 'Sign Up' ,
                         style: TextStyle(
+                          fontStyle: FontStyle.italic,
                           decoration: TextDecoration.underline,
                           color: Color.fromARGB(255, 216, 232, 247),
                         )
@@ -228,7 +229,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(width: 4.0),
                     Text(
-                      "Cleaning Staff?",
+                      "Staff?",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold, 
@@ -272,5 +273,3 @@ Utils.showSnackBar(e.message);
 }
 
 }
-
-

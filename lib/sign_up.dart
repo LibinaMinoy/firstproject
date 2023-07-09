@@ -30,13 +30,16 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
+      appBar:PreferredSize(
+        preferredSize: Size.fromHeight(170),
+         child: AppBar(
+        backgroundColor: Color.fromARGB(0, 255, 255, 255),
         elevation: 0,
-        title: const Text(
+        title: Text(
           "Sign Up",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 35,color: Colors.black, fontWeight: FontWeight.bold),
         ),
+      ),
       ),
       body: SingleChildScrollView(
       child: Container(
@@ -46,8 +49,9 @@ class _SignUpState extends State<SignUp> {
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
                 hexStringToColor("#CED9D9"),
-                hexStringToColor("#2E86C1"),
-                hexStringToColor("070A52")
+                //hexStringToColor("#2E86C1"),
+                hexStringToColor("#1147ab"),
+                hexStringToColor("#081247")
               ],begin: Alignment.topCenter, end: Alignment.bottomCenter )),
           child: SingleChildScrollView(
             child:Form(
@@ -56,9 +60,7 @@ class _SignUpState extends State<SignUp> {
                 padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(
-                      height: 20,
-                    ),
+                     SizedBox(height: 60,),
                      
                      Container(
              
@@ -201,15 +203,16 @@ class _SignUpState extends State<SignUp> {
                     RichText(
                       text: TextSpan(
                         style: TextStyle(color: Colors.white, fontSize: 16),
-                        text: 'Already have an account?',
+                        text: 'Already have an account? ',
                         children:[
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                             ..onTap = widget.onClickedSignIn,
-                            text: 'LOG IN',
+                            text: ' Log In',
                             style: TextStyle(
                           decoration: TextDecoration.underline,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Colors.lightBlue,
+                          fontStyle: FontStyle.italic
                         )
                           ),
                         ]
@@ -243,5 +246,5 @@ class _SignUpState extends State<SignUp> {
   Utils.showSnackBar(e.message);
 }
  navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  } 
+  }
 }

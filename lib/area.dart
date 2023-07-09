@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firstproject/req_confirm.dart';
 import 'package:flutter/material.dart';
-import 'package:snippet_coder_utils/FormHelper.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:intl/intl.dart';
 
 class SelectArea extends StatefulWidget {
@@ -252,6 +250,44 @@ class _SelectAreaState extends State<SelectArea> {
                         );
                       },
                     );
+                     } else if (_specifyAreaController.text.length > 15) {
+        // The specified area exceeds the character limit, show an error message
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('The specified area should not exceed 15 characters.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      } else if (_issueController.text.length > 15) {
+        // The issue exceeds the character limit, show an error message
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('The issue should not exceed 15 characters.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
                   } else {
                     // All fields are valid, add the user
                     addUser();
