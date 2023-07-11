@@ -70,12 +70,15 @@ class _NewComplaintState extends State<NewComplaint> {
                           style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
                     ),
-                         validator: (value) {
-                         if (value == null || value.isEmpty) {
-                              return 'Please enter a title.';
-                               }
-                             return null;
-                          },
+                        validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Please enter a title.';
+      } else if (value.length > 25) {
+        return 'Title should not exceed 25 characters.';
+      }
+      return null;
+    },
+    maxLength: 25, 
                           
                         decoration: InputDecoration(
                          labelText: 'Title',
@@ -148,7 +151,7 @@ class _NewComplaintState extends State<NewComplaint> {
                     },
                     child: Center(
                       child: 
-                      Text('Register',
+                      Text('Submit',
                       style: const TextStyle(
                        color: Color.fromARGB(255, 242, 242, 242), 
                        fontWeight: FontWeight.bold, 

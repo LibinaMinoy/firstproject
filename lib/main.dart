@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       title: 'Flutter Demo',
@@ -56,7 +57,7 @@ class MainPage extends StatelessWidget {
           if (email != null && email.endsWith('@ug.cusat.ac.in')) {
             // User is a student
             return VerifyEmailPage();
-          } else if (email != null && email.endsWith('staff@gmail.com')) {
+          } else if (email != null && email.endsWith('@gmail.com')) {
             // User is staff
             return staffHomePage();
           } else {

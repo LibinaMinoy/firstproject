@@ -143,21 +143,24 @@ class _viewComplaintsState extends State<viewComplaints> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Container(
-                              child: Text(
-                                complaintsnap['title'],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                  color: Color.fromARGB(255, 19, 9, 94),
-                                  shadows: [
-                                      Shadow(
-                                       color: Colors.black.withOpacity(0.4),
-                                       blurRadius: 3,
-                                       offset: Offset(0, 1),
-                                       ),
-                                   ],
-                                   
+                            child: SingleChildScrollView(
+                               scrollDirection: Axis.horizontal,
+                              child: Container(
+                                child: Text(
+                                  complaintsnap['title'],
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 19, 9, 94),
+                                    shadows: [
+                                        Shadow(
+                                         color: Colors.black.withOpacity(0.4),
+                                         blurRadius: 3,
+                                         offset: Offset(0, 1),
+                                         ),
+                                     ],
+                                     
+                                  ),
                                 ),
                               ),
                             ),

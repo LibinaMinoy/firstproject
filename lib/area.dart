@@ -269,7 +269,7 @@ class _SelectAreaState extends State<SelectArea> {
             );
           },
         );
-      } else if (_issueController.text.length > 15) {
+      } else if (_issueController.text.length > 20) {
         // The issue exceeds the character limit, show an error message
         showDialog(
           context: context,
